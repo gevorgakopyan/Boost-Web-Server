@@ -1,0 +1,42 @@
+listen 8080;
+
+location /static1 StaticHandler {
+    root ../static_files/static1;
+}
+location /static2/ StaticHandler {
+    root ../static_files/static2;
+}
+location /static3 StaticHandler {
+    root ../static_files/static3;
+}
+location /coverage_info StaticHandler {
+    root ../static_files/coverage_info;
+}
+
+location /api APIHandler {
+   root ../crud;
+}
+
+location /echo EchoHandler {
+}
+        
+location /echo2 EchoHandler {
+}
+
+location /health HealthHandler {
+}
+
+location /sleep SleepHandler {
+}
+
+location /auth AuthenticationHandler {
+  root ../credentials;
+  data_path ../credentials;
+  login /login;
+  signup /signup;
+  logout /logout;
+}
+
+location /console ApiConsoleHandler {
+  root ../credentials;
+}

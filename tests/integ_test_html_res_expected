@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Content-Length: 134
+Content-Type: text/html
+
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+        <h1>Test for Static File Handler</h1>
+    </body>
+</html>

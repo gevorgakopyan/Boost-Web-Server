@@ -1,0 +1,18 @@
+listen 80;
+
+location /static1 StaticHandler {
+    root ../static_files/static1;
+}
+location /static2 StaticHandler {
+    root ../static_files/static2;
+}
+location /static3 StaticHandler {
+    root ../static_files/static3;
+}
+
+
+location /echo EchoHandler {
+}
+        
+location /echo2 EchoHandler {
+}

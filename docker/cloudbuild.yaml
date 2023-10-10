@@ -1,0 +1,33 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    docker pull gcr.io/$PROJECT_ID/crazy-code:base || exit 0
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '-f', 'docker/base.Dockerfile',
+    '-t', 'crazy-code:base',
+    '-t', 'gcr.io/$PROJECT_ID/crazy-code:base',
+    '--cache-from', 'gcr.io/$PROJECT_ID/crazy-code:base',
+    '.'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/crazy-code:base']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '-f', 'docker/Dockerfile',
+    '-t', 'gcr.io/$PROJECT_ID/crazy-code:latest',
+    '.'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '-f', 'docker/coverage.Dockerfile',
+    '-t', 'gcr.io/$PROJECT_ID/crazy-code:coverage',
+    '.'
+  ]
+images: ['gcr.io/$PROJECT_ID/crazy-code:base', 'gcr.io/$PROJECT_ID/crazy-code:latest', 'gcr.io/$PROJECT_ID/crazy-code:coverage']

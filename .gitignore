@@ -1,0 +1,9 @@
+.DS_Store
+.vscode
+.cache
+build
+build_*
+mirror
+*.log
+crud
+user_database.txt

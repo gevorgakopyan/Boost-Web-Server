@@ -1,0 +1,5 @@
+listen 8080; 
+
+location /api APIHandler {
+    root ../crud;
+}
